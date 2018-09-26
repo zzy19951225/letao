@@ -24,6 +24,9 @@ $(function (){
             max: 6,
             message: '用户名长度必须在2到6之间'
           },
+          callback: {
+            message:"用户名不存在"
+          },
           //正则校验
           regexp: {
             regexp: /^[a-zA-Z0-9_\.]+$/,
@@ -47,6 +50,9 @@ $(function (){
           regexp: {
             regexp: /^[a-zA-Z0-9_\.]+$/,
             message: '用户名由数字字母下划线和.组成'
+          },
+          callback: {
+            message: "密码错误"
           }
         }
       }
@@ -55,3 +61,43 @@ $(function (){
   })
  
 });
+
+
+$("#form").on('success.form.bv', function (e) {
+  e.preventDefault();
+  // console.log("猪");
+  //使用ajax提交逻辑
+
+  $.ajax({
+    type: 'post',
+    url: "/employee/employeeLogin",
+    data: $('#form').serialize(),
+    datatype: "json",
+    success : function(info){
+      if (info.success) {
+        location.herf = "index.html";
+      }
+      if (info.error === 1000) {
+        $('#form').data("bootstrapValidator").updateStatus("username", "INVALID", "callback");
+      }
+      if (info.error === 1001) {
+        $('#form').data("bootstrapValidator").updateStatus("password", "INVALID", "callback")
+      }
+    }
+  })
+
+
+ 
+});
+
+
+$('[type="reset"]').click(function() {
+  console.log( 1111 );
+  // 除了重置文本, 还要重置校验状态
+  $('#form').data("bootstrapValidator").resetForm();
+});
+
+
+
+
+
