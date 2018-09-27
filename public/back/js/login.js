@@ -75,7 +75,7 @@ $("#form").on('success.form.bv', function (e) {
     datatype: "json",
     success : function(info){
       if (info.success) {
-        location.herf = "index.html";
+        location.href = "index.html";
       }
       if (info.error === 1000) {
         $('#form').data("bootstrapValidator").updateStatus("username", "INVALID", "callback");
