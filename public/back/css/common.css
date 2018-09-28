@@ -12,6 +12,10 @@ ul {
   margin: 0;
 }
 
+.red {
+  color: #A94442;
+}
+
 .body_bg {
   background-color: #222d32;
 }
@@ -32,6 +36,10 @@ ul {
   height: 100%;
   background-color: #222d32;
   z-index: 999;
+  transition: all 1s;
+}
+.lt_aside.hidemenu {
+  left: -180px;
 }
 .lt_aside .brand {
   width: 180px;
@@ -92,7 +100,10 @@ ul {
   width: 100%;
   background-color: #3c8dbc;
   padding-left: 180px;
-
+  transition:all 1s; 
+}
+.lt_topbar.hidemenu {
+  padding-left: 0;
 }
 .lt_topbar a {
   width: 50px;
@@ -105,9 +116,21 @@ ul {
 .lt_main {
   padding-left: 180px;
   padding-top: 50px;
-  height: 1000px;
-  background-color: pink;
+  /* height: 1000px; */
+  /* background-color: pink; */
+  transition: all 1s;
+}
+.lt_main.hidemenu {
+  padding-left: 0;
 }
 .lt_main .breadcrumb {
   margin-top: 30px;
+}
+.lt_content {
+  padding-top: 50px;
+}
+.echarts_1,
+.echarts_2 {
+  width: 48%;
+  height: 500px;
 }
