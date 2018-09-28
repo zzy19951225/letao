@@ -16,6 +16,12 @@ ul {
   color: #A94442;
 }
 
+.table.table-bordered   tr th ,
+.table.table-bordered   tr td {
+  text-align: center;
+  vertical-align: middle;
+}
+
 .body_bg {
   background-color: #222d32;
 }
