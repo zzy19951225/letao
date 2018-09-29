@@ -1,6 +1,10 @@
 $(function() {
   var currentPage = 1; // 表示当前页
   var pageSize = 5; // 每页多少条
+
+
+  var currentId;
+  var isDelete;
   // 一进入页面, 需要发送ajax请求, 请求用户列表数据, 通过模板引擎, 进行渲染
   render();
   function render() {
@@ -42,6 +46,33 @@ $(function() {
     })
   }
 
+//点击启用禁用按钮，显示模态框，时间委托
+      $("tbody").on("click",".btn",function(){
+        $("#userModal").modal("show");
+        currentId = $(this).parent().data("id");
+        isDelete = $(this).hasClass("btn-danger") ? 0 : 1;
+      });
+
+    $("#submitBtn").on("click",function(){
+      console.log(currentId , isDelete);
+
+      $.ajax({
+        type : "post",
+        url:"/user/updateUser",
+        dataType:"json",
+        data:{
+          id :currentId,
+          isDelete : isDelete
+        },
+        success: function(info){
+          console.log(info);
+          if (info.success) {
+            $("#userModal").modal("hide");
+            render();
+          }
+        }
+      })
+    })
 
 
 
